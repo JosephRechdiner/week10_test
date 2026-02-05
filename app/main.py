@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from connection import MongoManager
-from routes import employees_router
+from .connection import MongoManager
+from .routes import employees_router
 
 file_path = './data/employee_data_advanced.json'
 

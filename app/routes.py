@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, Request, HTTPException
-from dal import DalManager
+from .dal import DalManager
 
 employees_router = APIRouter()
 
@@ -14,7 +14,7 @@ def get_database(request: Request):
 def get_employees_salary(database = Depends(get_database)):
     employees = DalManager.get_engineering_high_salary_employees(database)
     if not employees:
-        raise HTTPException(status_code=404, detail=f"Not found!, Error: {str(e)}")
+        raise HTTPException(status_code=404, detail="Not found!")
     return employees
 
 # 2
@@ -22,7 +22,7 @@ def get_employees_salary(database = Depends(get_database)):
 def get_employees_age_and_role(database = Depends(get_database)):
     employees = DalManager.get_employees_by_age_and_role(database)
     if not employees:
-        raise HTTPException(status_code=404, detail=f"Not found!, Error: {str(e)}")
+        raise HTTPException(status_code=404, detail="Not found!")
     return employees
 
 # 3
@@ -30,7 +30,7 @@ def get_employees_age_and_role(database = Depends(get_database)):
 def get_employees_top_seniority(database = Depends(get_database)):
     employees = DalManager.get_top_seniority_employees_excluding_hr(database)
     if not employees:
-        raise HTTPException(status_code=404, detail=f"Not found!, Error: {str(e)}")
+        raise HTTPException(status_code=404, detail="Not found!")
     return employees
 
 # 4
@@ -38,7 +38,7 @@ def get_employees_top_seniority(database = Depends(get_database)):
 def get_employees_age_or_seniority(database = Depends(get_database)):
     employees = DalManager.get_employees_by_age_or_seniority(database)
     if not employees:
-        raise HTTPException(status_code=404, detail=f"Not found!, Error: {str(e)}")
+        raise HTTPException(status_code=404, detail="Not found!")
     return employees
 
 # 5
@@ -46,7 +46,7 @@ def get_employees_age_or_seniority(database = Depends(get_database)):
 def get_employees_manager_excluding_departments(database = Depends(get_database)):
     employees = DalManager.get_managers_excluding_departments(database)
     if not employees:
-        raise HTTPException(status_code=404, detail=f"Not found!, Error: {str(e)}")
+        raise HTTPException(status_code=404, detail="Not found!")
     return employees
 
 # 6
@@ -54,5 +54,5 @@ def get_employees_manager_excluding_departments(database = Depends(get_database)
 def get_employees_lastname_and_age(database = Depends(get_database)):
     employees = DalManager.get_employees_by_lastname_and_age(database)
     if not employees:
-        raise HTTPException(status_code=404, detail=f"Not found!, Error: {str(e)}")
+        raise HTTPException(status_code=404, detail="Not found!")
     return employees
